@@ -8,16 +8,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+  &Image {
+    width: 6rem;
+    height: 6rem;
+  }
 
-.headerImage {
-  width: 6rem;
-  height: 6rem;
-}
-
-.headerHomeImage {
-  width: 8rem;
-  height: 8rem;
+  &HomeImage {
+    width: 8rem;
+    height: 8rem;
+  }
 }
 
 .backToHome {
