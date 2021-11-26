@@ -36,7 +36,7 @@ export default function Layout({ children, home }) {
           </>
         ) : (
           <>
-            <Link>
+            <Link href='/'>
               <a>
                 <img
                   src='/images/profile.jpeg'
