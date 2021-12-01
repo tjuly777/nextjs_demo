@@ -4,7 +4,6 @@ import { getAllPostIds, getPostData } from '../../lib/posts';
 export default function Post({ postData }) {
   return (
     <Layout>
-      {params.id}
       {postData.title}
       <br />
       {postData.id}
@@ -14,6 +13,7 @@ export default function Post({ postData }) {
   );
 }
 
+// 処理可能なidの一覧を返す
 export async function getStaticPaths() {
   const paths = getAllPostIds();
   return {
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
   };
 }
 
-// 静的データとしてPostへプロパティ送信
+// Postへプロパティ送信
 export async function getStaticProps({ params }) {
   const postData = getPostData(params.id);
   return {
