@@ -6,8 +6,12 @@ import html from 'remark-html';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
+type sortedPostsDataProps = {
+  date: string;
+  title: string;
+};
 export function getSortedPostsData() {
-  const fileNames = fs.readdirSync(postsDirectory);
+  const fileNames: string[] = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
     const id = fileName.replace(/\.md$/, '');
 
@@ -17,7 +21,7 @@ export function getSortedPostsData() {
     const matterResult = matter(fileContents);
     return {
       id,
-      ...matterResult.data,
+      ...(matterResult.data as sortedPostsDataProps),
     };
   });
 
@@ -38,7 +42,7 @@ export function getAllPostIds() {
 }
 
 // /posts/[id].mdを取得、解析する
-export async function getPostData(id) {
+export async function getPostData(id: string) {
   const fullPath = path.join(postsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
@@ -54,6 +58,6 @@ export async function getPostData(id) {
   return {
     id,
     contentHtml,
-    ...matterResult.data,
+    ...(matterResult.data as { date: string; title: string }),
   };
 }
