@@ -1,8 +1,7 @@
 import '../styles/globals.scss';
+import { AppProps } from 'next/app';
 
 // トップレベルコンポーネント、変更時はサーバー再起動の必要あり
-function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
 }
-
-export default App;
