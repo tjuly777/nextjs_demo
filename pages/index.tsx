@@ -6,8 +6,17 @@ import utilStyles from '../styles/utils.module.scss';
 import Image from 'next/image';
 import { getSortedPostsData } from '../lib/posts';
 import { util } from 'prettier';
+import { GetStaticProps } from 'next';
 
-export default function Home({ allPostsData }) {
+type allPostsDataProps = {
+  allPostsData: {
+    date: string;
+    title: string;
+    id: string;
+  };
+};
+
+export default function Home({ allPostsData }: allPostsDataProps) {
   return (
     <Layout home>
       <Head>
@@ -44,11 +53,11 @@ export default function Home({ allPostsData }) {
   );
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getSortedPostsData();
   return {
     props: {
       allPostsData,
     },
   };
-}
+};
